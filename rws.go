@@ -3,7 +3,6 @@ package goprotoextra
 import (
 	"context"
 	"errors"
-	"google.golang.org/protobuf/proto"
 	"io"
 )
 
@@ -25,7 +24,7 @@ type IMessageWrapper interface {
 	CancelFunc() context.CancelFunc
 	ToReactor(inline bool, any interface{}) error
 	ToConnection(rws ReadWriterSize) error
-	Message() proto.Message
+	Message() interface{}
 }
 type BaseMessageWrapper struct {
 	cancelCtx    context.Context
@@ -95,7 +94,7 @@ func (self *BaseMessageWrapper) CancelFunc() context.CancelFunc {
 
 type MessageWrapper struct {
 	BaseMessageWrapper
-	Data proto.Message
+	Data interface{}
 }
 
 func NewMessageWrapper(
@@ -103,7 +102,7 @@ func NewMessageWrapper(
 	cancelFunc context.CancelFunc,
 	toReactor ToReactorFunc,
 	toConnection ToConnectionFunc,
-	data proto.Message) *MessageWrapper {
+	data interface{}) *MessageWrapper {
 	return &MessageWrapper{
 		BaseMessageWrapper: NewBaseMessageWrapper(
 			cancelCtx,
@@ -114,7 +113,7 @@ func NewMessageWrapper(
 	}
 }
 
-func (self *MessageWrapper) Message() proto.Message {
+func (self *MessageWrapper) Message() interface{} {
 	return self.Data
 }
 
