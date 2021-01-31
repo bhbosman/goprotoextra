@@ -1,1 +1,3 @@
-module "github.com/bhbosman/goprotoextra"
+module github.com/bhbosman/goprotoextra
+
+go 1.15
