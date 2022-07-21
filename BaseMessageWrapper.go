@@ -5,18 +5,17 @@ import (
 )
 
 type BaseMessageWrapper struct {
-	toReactor    rxgo.NextFunc
-	toConnection rxgo.NextFunc
+	toNext rxgo.NextFunc
 }
 
-func (self *BaseMessageWrapper) ToReactor(any interface{}) {
-	if self != nil && self.toReactor != nil {
-		self.toReactor(any)
+func (self *BaseMessageWrapper) SetNext(toNext rxgo.NextFunc) {
+	if self != nil {
+		self.toNext = toNext
 	}
 }
 
-func (self *BaseMessageWrapper) ToConnection(any interface{}) {
-	if self != nil && self.toConnection != nil {
-		self.toConnection(any)
+func (self *BaseMessageWrapper) ToNext(any interface{}) {
+	if self != nil && self.toNext != nil {
+		self.toNext(any)
 	}
 }
