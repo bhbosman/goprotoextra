@@ -1,9 +1,12 @@
 package goprotoextra
 
-import "github.com/reactivex/rxgo/v2"
+import (
+	"github.com/bhbosman/goCommsDefinitions"
+)
 
 type IMessageWrapper interface {
-	SetNext(toNext rxgo.NextFunc)
+	SetNext(toNext goCommsDefinitions.IAdder)
 	ToNext(any interface{})
 	Message() interface{}
+	Adder() goCommsDefinitions.IAdder
 }
