@@ -2,7 +2,7 @@ module github.com/bhbosman/goprotoextra
 
 go 1.24.0
 
-require github.com/bhbosman/goCommsDefinitions v0.0.0-20250308000247-4306925b3dfd
+require github.com/bhbosman/goCommsDefinitions v0.0.0-20250308074916-3e7c0d32b971
 
 require (
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
